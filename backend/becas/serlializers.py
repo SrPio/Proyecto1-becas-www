@@ -4,6 +4,6 @@ from .models import Beca
 class BecaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Beca
-        fields = ['nombre', 'categoria', 'porcentaje_financia', 'pais', 'universidad', 'reqerimientos', 'popularidad']
+        fields = ['id', 'nombre', 'categoria', 'porcentaje_financia', 'pais', 'universidad', 'requerimientos', 'popularidad']
 
         
