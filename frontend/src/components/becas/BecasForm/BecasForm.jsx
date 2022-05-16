@@ -1,54 +1,173 @@
-import React from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+import * as FuncionesBecas from "../FuncionesBecas/FuncionesBecas";
 
 function BecasForm() {
+  const navigate = useNavigate();
+  const params = useParams();
+
+  const INITIAL_STATE = {
+    nombre: "",
+    categoria: "",
+    porcentaje_financia: "",
+    pais: "",
+    universidad: "",
+    requerimientos: "",
+    popularidad: "",
+  };
+
+  const [beca, setBeca] = useState(INITIAL_STATE);
+
+  const handleInputChange = (e) => {
+    setBeca({ ...beca, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    /* console.log(beca); */
+    try {
+      let res;
+      res = await FuncionesBecas.registerBeca(beca);
+      const data = await res.json();
+      console.log(data);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getBeca = async (becaId) => {
+    try {
+      const res = await FuncionesBecas.getBeca(becaId);
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (params.id) {
+      getBeca(params.id);
+    }
+  }, []);
+
   return (
-    <div className="container my-4">
-      <Form>
-        <h1 className="my-4">Crear una Beca</h1>
-        <Form.Group className="mb-3" controlId="nombre">
-          <Form.Label>Nombre de la Beca</Form.Label>
-          <Form.Control
+    <div className="col-md-3 mx-auto">
+      <h2 className="mb-3 text-center">Crear una Beca</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <label className="form-label">Nombre</label>
+          <input
             type="text"
-            placeholder="Nombre de la Beca"
+            name="nombre"
+            value={beca.nombre}
+            onChange={handleInputChange}
+            className="form-control"
+            minLength="2"
             maxLength="50"
+            autoFocus
+            required
           />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="categoria">
-          <Form.Label>Categoria</Form.Label>
-          <Form.Control type="text" placeholder="Categoria" maxLength="50" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="porcentajeFinancia">
-          <Form.Label>Porcentaje de financiacion</Form.Label>
-          <Form.Control
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Categoria</label>
+          <input
             type="text"
-            placeholder="Porcentaje de financiacion"
-            maxLength="2"
+            className="form-control"
+            placeholder="Categoria"
+            name="categoria"
+            maxLength="50"
+            value={beca.categoria}
+            onChange={handleInputChange}
           />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="pais">
-          <Form.Label>Pais</Form.Label>
-          <Form.Control type="text" placeholder="Pais" maxLength="50" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="universidad">
-          <Form.Label>Universidad</Form.Label>
-          <Form.Control type="text" placeholder="Universidad" maxLength="50" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="requerimientos">
-          <Form.Label>Requerimientos</Form.Label>
-          <Form.Control as="textarea" rows={3} maxLength="250" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="popularidad">
-          <Form.Label>Popularidad</Form.Label>
-          <Form.Control
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Porcentaje de financiacion</label>
+          <div className="input-group mb-3">
+            <input
+              type="number"
+              placeholder="Porcentaje de financiacion"
+              name="porcentaje_financia"
+              className="form-control"
+              min="1"
+              max="100"
+              value={beca.porcentaje_financia}
+              onChange={handleInputChange}
+            />
+            <span className="input-group-text" id="basic-addon2">
+              %
+            </span>
+          </div>
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Pais</label>
+          <input
+            type="text"
+            className="form-control"
+            name="pais"
+            placeholder="Pais"
+            maxLength="50"
+            value={beca.pais}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Universidad</label>
+          <input
+            type="text"
+            className="form-control"
+            name="universidad"
+            placeholder="Universidad"
+            maxLength="50"
+            value={beca.universidad}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="mb-3">
+          <div className="form-floating">
+            <textarea
+              className="form-control"
+              placeholder="Leave a comment here"
+              id="floatingTextarea2"
+              style={{ height: "100px" }}
+              name="requerimientos"
+              maxLength="250"
+              value={beca.requerimientos}
+              onChange={handleInputChange}
+            ></textarea>
+            <label htmlFor="floatingTextarea2">Requerimientos</label>
+          </div>
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Popularidad</label>
+          <input
             type="number"
+            name="popularidad"
             placeholder="Popularidad"
             min="1"
             max="5"
+            value={beca.popularidad}
+            onChange={handleInputChange}
+            className="form-control"
           />
-        </Form.Group>
-      </Form>
+        </div>
+        <div className="d-grid gap-2">
+          {/* {params.id ? (
+            <button type="submit" className="btn btn-block btn-primary">
+              Update
+            </button>
+          ) : (
+            <button type="submit" className="btn btn-block btn-success">
+              Register
+            </button>
+          )} */}
+          <button type="submit" className="btn btn-block btn-success">
+            Register
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

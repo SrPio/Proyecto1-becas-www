@@ -27,7 +27,7 @@ function BecasList() {
     <div>
       <h1>Becas de maestría.</h1>
       <div>
-        <BecasCards becasData={becasData} />
+        <BecasCards becasData={becasData} obtenerBecas={obtenerBecas} />
       </div>
     </div>
   );

@@ -5,10 +5,21 @@ import ListGroupItem from "react-bootstrap/ListGroupItem";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 
-function BecasCards({ becasData }) {
+import * as FuncionesBecas from "../FuncionesBecas/FuncionesBecas";
+
+function BecasCards({ becasData, obtenerBecas }) {
+  const navigate = useNavigate();
+
+  const handleDelete = async (becaId) => {
+    console.log(becaId);
+    await FuncionesBecas.deleteBeca(becaId);
+    obtenerBecas();
+  };
+
   return (
-    <Row xs={1} md={4} className="g-4">
+    <Row xs={1} md={3} className="g-4">
       {becasData.map((beca) => {
         return (
           <Col className="mb-2" key={beca.id}>
@@ -28,7 +39,21 @@ function BecasCards({ becasData }) {
                 <ListGroupItem>{beca.popularidad}</ListGroupItem>
               </ListGroup>
               <Card.Body>
-                <Button variant="primary">Mas Información</Button>
+                <div className="d-grid gap-2">
+                  <Button variant="primary">Mas Información</Button>
+                  <Button
+                    variant="info"
+                    onClick={() => navigate(`/updateBeca/${beca.id}`)}
+                  >
+                    Editar Beca
+                  </Button>
+                  <Button
+                    onClick={() => beca.id && handleDelete(beca.id)}
+                    variant="danger"
+                  >
+                    Borrar Beca
+                  </Button>
+                </div>
               </Card.Body>
             </Card>
           </Col>
