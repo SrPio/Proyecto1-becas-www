@@ -6,6 +6,9 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import "./BecasCards.css";
 
 import * as FuncionesBecas from "../FuncionesBecas/FuncionesBecas";
 
@@ -36,7 +39,31 @@ function BecasCards({ becasData, obtenerBecas }) {
                 <ListGroupItem>{beca.pais}</ListGroupItem>
                 <ListGroupItem>{beca.porcentaje_financia}</ListGroupItem>
                 <ListGroupItem>{beca.universidad}</ListGroupItem>
-                <ListGroupItem>{beca.popularidad}</ListGroupItem>
+                {/* <ListGroupItem>{beca.popularidad}</ListGroupItem> */}
+                <ListGroupItem>
+                  {Array.from({ length: beca.popularidad }).map(
+                    (item, index) => {
+                      return (
+                        <FontAwesomeIcon
+                          key={index}
+                          className={"star"}
+                          icon={faStar}
+                        />
+                      );
+                    }
+                  )}
+                  {Array.from({ length: 5 - beca.popularidad }).map(
+                    (item, index) => {
+                      return (
+                        <FontAwesomeIcon
+                          key={index}
+                          className={"starOpaca"}
+                          icon={faStar}
+                        />
+                      );
+                    }
+                  )}
+                </ListGroupItem>
               </ListGroup>
               <Card.Body>
                 <div className="d-grid gap-2">
