@@ -17,14 +17,31 @@ export const registerBeca = async (newBeca) => {
         })
     });
 };
+export const updateBeca = async (becaId, updatedBeca) => {
+    return await fetch(`${API_URL}${becaId}/`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "nombre": String(updatedBeca.nombre).trim(),
+            "categoria": String(updatedBeca.categoria).trim(),
+            "porcentaje_financia": String(`${updatedBeca.porcentaje_financia}%`).trim(),
+            "pais": String(updatedBeca.pais).trim(),
+            "universidad": String(updatedBeca.universidad).trim(),
+            "requerimientos": String(updatedBeca.requerimientos).trim(),
+            "popularidad": String(updatedBeca.popularidad).trim(),
+        })
+    });
+};
 
 export const deleteBeca = async (becaId) => {
-    return await fetch(`${API_URL}${becaId}`,
+    return await fetch(`${API_URL}${becaId}/`,
         {
             method: 'DELETE'
         });
 };
 
 export const getBeca = async (becaId) => {
-    return await fetch(`${API_URL}${becaId}`);
+    return await fetch(`${API_URL}${becaId}/`);
 };

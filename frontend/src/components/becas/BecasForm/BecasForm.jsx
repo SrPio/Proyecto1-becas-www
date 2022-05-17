@@ -28,9 +28,14 @@ function BecasForm() {
     /* console.log(beca); */
     try {
       let res;
-      res = await FuncionesBecas.registerBeca(beca);
-      const data = await res.json();
-      console.log(data);
+      if (!params.id) {
+        res = await FuncionesBecas.registerBeca(beca);
+        const data = await res.json();
+        console.log(data);
+      } else {
+        await FuncionesBecas.updateBeca(params.id, beca);
+      }
+
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -41,6 +46,24 @@ function BecasForm() {
     try {
       const res = await FuncionesBecas.getBeca(becaId);
       const data = await res.json();
+      const {
+        nombre,
+        categoria,
+        porcentaje_financia,
+        pais,
+        universidad,
+        requerimientos,
+        popularidad,
+      } = data.beca;
+      setBeca({
+        nombre,
+        categoria,
+        porcentaje_financia,
+        pais,
+        universidad,
+        requerimientos,
+        popularidad,
+      });
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -51,10 +74,11 @@ function BecasForm() {
     if (params.id) {
       getBeca(params.id);
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
-    <div className="col-md-3 mx-auto">
+    <div className="col-md-3 mx-auto mb-5 mt-5">
       <h2 className="mb-3 text-center">Crear una Beca</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -76,7 +100,7 @@ function BecasForm() {
           <input
             type="text"
             className="form-control"
-            placeholder="Categoria"
+            placeholder="Nacional o Internacional"
             name="categoria"
             maxLength="50"
             value={beca.categoria}
@@ -154,18 +178,18 @@ function BecasForm() {
           />
         </div>
         <div className="d-grid gap-2">
-          {/* {params.id ? (
+          {params.id ? (
             <button type="submit" className="btn btn-block btn-primary">
-              Update
+              Actualizar beca
             </button>
           ) : (
             <button type="submit" className="btn btn-block btn-success">
-              Register
+              Registrar beca
             </button>
-          )} */}
-          <button type="submit" className="btn btn-block btn-success">
+          )}
+          {/* <button type="submit" className="btn btn-block btn-success">
             Register
-          </button>
+          </button> */}
         </div>
       </form>
     </div>

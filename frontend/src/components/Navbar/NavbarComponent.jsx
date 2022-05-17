@@ -1,11 +1,7 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
 import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
 function NavbarComponent() {
@@ -28,10 +24,13 @@ function NavbarComponent() {
                 Crear Beca
               </Link>
               <Link className="nav-link" to="/">
+                Becas mas populares
+              </Link>
+              <Link className="nav-link" to="/">
                 Noticias del mundo
               </Link>
             </Nav>
-            <Form className="d-flex">
+            {/* <Form className="d-flex">
               <FormControl
                 type="search"
                 placeholder="Search"
@@ -39,7 +38,7 @@ function NavbarComponent() {
                 aria-label="Search"
               />
               <Button variant="outline-success">Search</Button>
-            </Form>
+            </Form> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>
