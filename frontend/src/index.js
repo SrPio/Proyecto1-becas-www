@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import NavbarComponent from './components/Navbar/NavbarComponent';
 import BecasForm from './components/becas/BecasForm/BecasForm';
+import BecasPopulares from './components/becas/BecasPopulares/BecasPopulares';
+import BecasMasInfo from './components/becas/BecasMasInfo/BecasMasInfo';
 
 
 
@@ -18,6 +20,8 @@ root.render(
         <Route exact path="/" element={<App />} />
         <Route path="/BecasForm" element={<BecasForm />} />
         <Route path="/updateBeca/:id" element={<BecasForm />} />
+        <Route path="/BecasPopulares/" element={<BecasPopulares />} />
+        <Route path="/BecasMasInfo/:id" element={<BecasMasInfo />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

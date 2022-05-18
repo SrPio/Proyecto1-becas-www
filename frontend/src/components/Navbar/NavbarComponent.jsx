@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function NavbarComponent() {
   return (
     <div>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="lg">
         <Container fluid>
           <Navbar.Brand href="#">Becas Maestría</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
@@ -23,7 +23,7 @@ function NavbarComponent() {
               <Link className="nav-link" to="/BecasForm">
                 Crear Beca
               </Link>
-              <Link className="nav-link" to="/">
+              <Link className="nav-link" to="/BecasPopulares">
                 Becas mas populares
               </Link>
               <Link className="nav-link" to="/">

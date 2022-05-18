@@ -8,6 +8,9 @@ import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSackDollar } from "@fortawesome/free-solid-svg-icons";
+import { faBuildingColumns } from "@fortawesome/free-solid-svg-icons";
 import "./BecasCards.css";
 
 import * as FuncionesBecas from "../FuncionesBecas/FuncionesBecas";
@@ -22,24 +25,43 @@ function BecasCards({ becasData, obtenerBecas }) {
   };
 
   return (
-    <Row xs={1} md={3} className="g-4">
+    <Row xs={1} md={3} className="g-4 mx-auto">
       {becasData.map((beca) => {
         return (
           <Col className="mb-2" key={beca.id}>
-            <Card style={{ width: "18rem" }}>
+            <Card style={{ width: "18rem" }} className="mx-auto">
               <Card.Img
                 variant="top"
                 src="https://img.freepik.com/vector-gratis/cartel-prestamos-estudiantiles-o-becas_603843-1091.jpg?t=st=1652638503~exp=1652639103~hmac=b4369561279465254bff66e851f64a607447abc227ca811563c2f34019fef67e&w=740"
               />
               <Card.Body>
-                <Card.Title>{beca.nombre}</Card.Title>
-                <Card.Text>{beca.reqerimientos}</Card.Text>
+                <Card.Title>
+                  <div className="d-flex">
+                    <div className="p-2">{beca.nombre}</div>
+                    <div className="ms-auto p-2">
+                      <Button
+                        variant="primary"
+                        onClick={() => navigate(`/updateBeca/${beca.id}`)}
+                      >
+                        Editar
+                      </Button>
+                    </div>
+                  </div>
+                </Card.Title>
               </Card.Body>
               <ListGroup className="list-group-flush">
-                <ListGroupItem>{beca.pais}</ListGroupItem>
-                <ListGroupItem>{beca.porcentaje_financia}</ListGroupItem>
-                <ListGroupItem>{beca.universidad}</ListGroupItem>
-                {/* <ListGroupItem>{beca.popularidad}</ListGroupItem> */}
+                <ListGroupItem>
+                  <FontAwesomeIcon className="me-2" icon={faMapMarkerAlt} />
+                  {beca.pais}
+                </ListGroupItem>
+                <ListGroupItem>
+                  <FontAwesomeIcon className="me-2" icon={faSackDollar} />
+                  Financiación: {beca.porcentaje_financia}
+                </ListGroupItem>
+                <ListGroupItem>
+                  <FontAwesomeIcon className="me-2" icon={faBuildingColumns} />
+                  {beca.universidad}
+                </ListGroupItem>
                 <ListGroupItem>
                   {Array.from({ length: beca.popularidad }).map(
                     (item, index) => {
@@ -67,12 +89,11 @@ function BecasCards({ becasData, obtenerBecas }) {
               </ListGroup>
               <Card.Body>
                 <div className="d-grid gap-2">
-                  <Button variant="primary">Mas Información</Button>
                   <Button
-                    variant="info"
-                    onClick={() => navigate(`/updateBeca/${beca.id}`)}
+                    variant="primary"
+                    onClick={() => navigate(`/BecasMasInfo/${beca.id}`)}
                   >
-                    Editar Beca
+                    Mas Información
                   </Button>
                   <Button
                     onClick={() => beca.id && handleDelete(beca.id)}

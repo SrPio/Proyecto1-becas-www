@@ -25,7 +25,7 @@ function BecasList() {
 
   return (
     <div>
-      <h1>Becas de maestría.</h1>
+      <h1 className="mb-5 mt-5">Becas de maestría.</h1>
       <div>
         <BecasCards becasData={becasData} obtenerBecas={obtenerBecas} />
       </div>

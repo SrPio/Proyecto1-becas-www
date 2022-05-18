@@ -6,6 +6,7 @@ import * as FuncionesBecas from "../FuncionesBecas/FuncionesBecas";
 function BecasForm() {
   const navigate = useNavigate();
   const params = useParams();
+  /* let valorSinPorcentaje = ""; */
 
   const INITIAL_STATE = {
     nombre: "",
@@ -46,24 +47,7 @@ function BecasForm() {
     try {
       const res = await FuncionesBecas.getBeca(becaId);
       const data = await res.json();
-      const {
-        nombre,
-        categoria,
-        porcentaje_financia,
-        pais,
-        universidad,
-        requerimientos,
-        popularidad,
-      } = data.beca;
-      setBeca({
-        nombre,
-        categoria,
-        porcentaje_financia,
-        pais,
-        universidad,
-        requerimientos,
-        popularidad,
-      });
+      setBeca(data);
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -77,10 +61,22 @@ function BecasForm() {
     // eslint-disable-next-line
   }, []);
 
+  /* const quitarPorcentaje = (porcentaje) => {
+    const conPorcentaje = porcentaje;
+    const sinPorcentaje = conPorcentaje.substring(0, conPorcentaje.length - 1);
+    console.log();
+    return sinPorcentaje;
+  }; */
+
   return (
     <div className="col-md-3 mx-auto mb-5 mt-5">
-      <h2 className="mb-3 text-center">Crear una Beca</h2>
-      <form onSubmit={handleSubmit}>
+      {params.id ? (
+        <h2 className="mb-3 text-center">Actualizar Beca</h2>
+      ) : (
+        <h2 className="mb-3 text-center">Crear una Beca</h2>
+      )}
+
+      <form onSubmit={handleSubmit} className="m-4">
         <div className="mb-3">
           <label className="form-label">Nombre</label>
           <input
@@ -187,9 +183,6 @@ function BecasForm() {
               Registrar beca
             </button>
           )}
-          {/* <button type="submit" className="btn btn-block btn-success">
-            Register
-          </button> */}
         </div>
       </form>
     </div>
