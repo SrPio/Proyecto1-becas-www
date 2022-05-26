@@ -1,0 +1,20 @@
+.Card-title-text {
+    font-size: 17px;
+}
+
+.Card-subtitle-text {
+    font-size: 11px;
+}
+
+.button-verMas {
+    display: flex;
+    align-items: center;
+}
+
+.parrafo-button {
+    padding: 0;
+    margin: 0;
+    margin-right: 10px;
+}
+
+.icono-button {}

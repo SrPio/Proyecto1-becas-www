@@ -23,49 +23,6 @@ function Carousel() {
           "algo salio mal con el API nocticias populares: " + error.message
         );
       });
-
-    // eliminacion de la noticia vacia
-    /*console.log(data.results[3].multimedia[0].url + "hola")
-for (let index = 0; index < data.results.length; index++) {
-    console.log(data.results[index].title)
-    
-}*/
-    /*  for (let index = 0; index < 5; index++) {
-          if (data.results[index].title === "") {
-            data.results.splice(index, 1);
-          }
-        }
-
-        document.getElementById("item1a").href = data.results[0].url;
-        document.getElementById("item1p").innerText = data.results[0].abstract;
-        document.getElementById("item1t").innerHTML = data.results[0].title;
-        document.getElementById("item1").style.backgroundImage =
-          'url(" ' + data.results[0].multimedia[0].url + ' ")';
-
-        document.getElementById("item2a").href = data.results[1].url;
-        document.getElementById("item2p").innerText = data.results[1].abstract;
-        document.getElementById("item2t").innerHTML = data.results[1].title;
-        document.getElementById("item2").style.backgroundImage =
-          'url(" ' + data.results[1].multimedia[0].url + ' ")';
-
-        document.getElementById("item3a").href = data.results[2].url;
-        document.getElementById("item3p").innerText = data.results[2].abstract;
-        document.getElementById("item3t").innerHTML = data.results[2].title;
-        document.getElementById("item3").style.backgroundImage =
-          'url(" ' + data.results[2].multimedia[0].url + ' ")';
-
-        document.getElementById("item4a").href = data.results[3].url;
-        document.getElementById("item4p").innerText = data.results[3].abstract;
-        document.getElementById("item4t").innerHTML = data.results[3].title;
-        document.getElementById("item4").style.backgroundImage =
-          'url(" ' + data.results[3].multimedia[0].url + ' ")';
-
-        document.getElementById("item5a").href = data.results[4].url;
-        document.getElementById("item5p").innerText = data.results[4].abstract;
-        document.getElementById("item5t").innerHTML = data.results[4].title;
-        document.getElementById("item5").style.backgroundImage =
-          'url(" ' + data.results[4].multimedia[0].url + ' ")'; 
-      });*/
   };
 
   useEffect(() => {
@@ -147,6 +104,7 @@ for (let index = 0; index < data.results.length; index++) {
                   <a
                     id="item2a"
                     target="_blank"
+                    rel="noopener noreferrer"
                     href={noticia.url}
                     className="btn btn-lg btn-primary"
                   >
@@ -156,75 +114,6 @@ for (let index = 0; index < data.results.length; index++) {
               </div>
             );
           })}
-
-          {/* <div className="carousel-item">
-                <div id="item3" className="overlay-image"></div>
-                <div className="containerCaru">
-                  <h1 id="item3t">prueba</h1>
-                  <p id="item3p" className="lead">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Magni nostrum obcaecati voluptatibus velit perspiciatis
-                    dicta recusandae voluptas cum ratione quasi laborum, eum
-                    tenetur doloremque totam quibusdam eius nihil iusto
-                    reiciendis?
-                  </p>
-                  <a
-                    id="item3a"
-                    target="_blank"
-                    rel="noopener"
-                    href="/#"
-                    className="btn btn-lg btn-primary"
-                  >
-                    ve a la noticia
-                  </a>
-                </div>
-              </div> */}
-
-          {/* <div className="carousel-item">
-                <div id="item4" className="overlay-image"></div>
-                <div className="containerCaru">
-                  <h1 id="item4t">prueba</h1>
-                  <p id="item4p" className="lead">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Magni nostrum obcaecati voluptatibus velit perspiciatis
-                    dicta recusandae voluptas cum ratione quasi laborum, eum
-                    tenetur doloremque totam quibusdam eius nihil iusto
-                    reiciendis?
-                  </p>
-                  <a
-                    id="item4a"
-                    target="_blank"
-                    rel="noopener"
-                    href="/#"
-                    className="btn btn-lg btn-primary"
-                  >
-                    ve a la noticia
-                  </a>
-                </div>
-              </div> */}
-
-          {/* <div className="carousel-item">
-                <div id="item5" className="overlay-image"></div>
-                <div className="containerCaru">
-                  <h1 id="item5t">preuba</h1>
-                  <p id="item5p" className="lead">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Magni nostrum obcaecati voluptatibus velit perspiciatis
-                    dicta recusandae voluptas cum ratione quasi laborum, eum
-                    tenetur doloremque totam quibusdam eius nihil iusto
-                    reiciendis?
-                  </p>
-                  <a
-                    id="item5a"
-                    target="_blank"
-                    rel="noopener"
-                    href="/#"
-                    className="btn btn-lg btn-primary"
-                  >
-                    ve a la noticia
-                  </a>
-                </div>
-              </div> */}
         </div>
         <button
           className="carousel-control-prev"

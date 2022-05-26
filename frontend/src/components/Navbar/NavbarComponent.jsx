@@ -26,7 +26,7 @@ function NavbarComponent() {
               <Link className="nav-link" to="/BecasPopulares">
                 Becas mas populares
               </Link>
-              <Link className="nav-link" to="/">
+              <Link className="nav-link" to="/Noticias">
                 Noticias del mundo
               </Link>
             </Nav>

@@ -8,6 +8,7 @@ import NavbarComponent from './components/Navbar/NavbarComponent';
 import BecasForm from './components/becas/BecasForm/BecasForm';
 import BecasPopulares from './components/becas/BecasPopulares/BecasPopulares';
 import BecasMasInfo from './components/becas/BecasMasInfo/BecasMasInfo';
+import Noticias from './components/NYTimesNoticiasRecientes/Noticias';
 
 
 
@@ -22,6 +23,7 @@ root.render(
         <Route path="/updateBeca/:id" element={<BecasForm />} />
         <Route path="/BecasPopulares/" element={<BecasPopulares />} />
         <Route path="/BecasMasInfo/:id" element={<BecasMasInfo />} />
+        <Route path="/Noticias/" element={<Noticias />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
