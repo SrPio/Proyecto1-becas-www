@@ -101,7 +101,7 @@ function Carousel() {
                   <p id="item2p" className="lead">
                     {noticia.abstract}
                   </p>
-                  <a
+                  {/* <a
                     id="item2a"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -109,7 +109,7 @@ function Carousel() {
                     className="btn btn-lg btn-primary"
                   >
                     Ve a la noticia
-                  </a>
+                  </a> */}
                 </div>
               </div>
             );
