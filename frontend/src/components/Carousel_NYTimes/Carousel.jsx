@@ -15,8 +15,8 @@ function Carousel() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setNoticiasPopu(data.results.slice(0, 4));
-        console.log(data.results.slice(0, 4));
+        setNoticiasPopu(data.results.slice(1, 5));
+        console.log(data.results.slice(1, 5));
       })
       .catch((error) => {
         console.log(
